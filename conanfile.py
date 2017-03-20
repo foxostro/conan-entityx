@@ -38,7 +38,7 @@ EntityX is an EC system that uses C++11 features to provide type-safe component 
         self.run("cmake --build . {config}".format(config=cmake.build_config))
 
     def package(self):
-        self.copy("*.h", dst="include", src="entityx")
+        self.copy('*.h', dst='include/entityx', src='entityx/entityx')
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
