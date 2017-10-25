@@ -24,6 +24,7 @@ EntityX is an EC system that uses C++11 features to provide type-safe component 
 
     def source(self):
         self.run("git clone https://github.com/alecthomas/entityx.git --branch {version} --depth 1".format(version=self.version))
+        self.run("sed -ibak s/-Werror// CMakeLists.txt")
 
     def build(self):
         cmake = CMake(self.settings)
