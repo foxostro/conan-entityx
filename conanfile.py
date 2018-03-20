@@ -1,5 +1,4 @@
-from conans import ConanFile, CMake, tools
-import os
+from conans import ConanFile, CMake
 
 
 class EntityxConan(ConanFile):
@@ -24,10 +23,10 @@ EntityX is an EC system that uses C++11 features to provide type-safe component 
 
     def source(self):
         self.run("git clone https://github.com/alecthomas/entityx.git --branch {version} --depth 1".format(version=self.version))
-        self.run("sed -ibak s/-Werror// CMakeLists.txt")
+        self.run("sed -ibak s/-Werror// entityx/CMakeLists.txt")
 
     def build(self):
-        cmake = CMake(self.settings)
+        cmake = CMake(self)
         args = []
         args += ["-DENTITYX_RUN_BENCHMARKS={}".format("1" if self.options.benchmarks else "0")]
         args += ["-DENTITYX_MAX_COMPONENTS={}".format(self.options.max_components)]
